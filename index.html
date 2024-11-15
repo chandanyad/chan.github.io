@@ -2,19 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Call .NET from JavaScript</title>
+    <title>Terms and Condition Agreement</title>
 </head>
 <body>
 <div id="ds-terms-of-service"></div>
 <script src="https://demo.docusign.net/clickapi/sdk/latest/docusign-click.js"></script>
 <script>
+    // Parse the current URL
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Get specific query parameters
+    const agreementToken = urlParams.get('agreementToken');
+
     docuSignClick.Clickwrap.render(
         {
             agreementUrl:
-                "https://demo.docusign.net/clickapi/v1/redeem?agreementToken=AcTZT8gt-J9OqUVV3xCKFD0HGm9zbHP578mZBGaCJvIB33Fp-8WRbcg6-2TyzqhIbcmeBQrNQ_mtFAhyQ_JbtIft6etcQr8DKFUmZXIy4HKLfYAj7gT3RbM5-ML9-ZmJ_dVI_hqz11LIGGX6zzVJF8PqloTmWgJ_l1UMIGBQoCPFPjcytdN7WREjzeggVzo2FvGlTrzezjEP17ko43BrJaY22xj-ts9rkscjc1Nhsd0UvuLIE2N6rR0sWGTItqXdFUvdyhJYSj530m4v_CMPJOmSkNlphmHPJABTD5GUuVwNFuUhdUS9B78DoCYmZlNSRGVwV6kVLt0tu9JDrc1koMU03j0AzcirhQMHR5ibK3oFYHW1L183E9i7ZjSqBB89epIdFRGcDgr8hywltsM7xuvjlMO2vSFaunI5BFaA1xKAJaBYe15un0OOl0xC9d-oQChnKmTuyhHJ8dv75TNS3BFqp-O7OAwv6EAdJmw5HhfdP9aIu1bLdK_VV7WSv1QxUFbrs3IAjv02WGLz_zcdAlIYcC8wx6lP3FwT8N3kuCPjcIaYXE7-3Oe_oxo844yRqPlDv4CkVCsTNq-sm2SVztcmgn6pShpBwx7gPhX0tEpAViDS4_5iRnzGMyyEq0UkjfPyLtXERlctdq-RftqmvJIMG07L5v3r27a82H3HcQGrlU4pcwUzSca9BRKQmSkV-5j7bziTWqfQq6h2v0H1cv83Palro-6bKcJF1WLWXJybC9w2iYddrWqDCJhcI-DIPfadJoZSVmcazVz-9NC35kBRfCk_L0aCaj6RY_n4fWarJIVUvBelKA6tpQ-Ix7TjwCCYNzKlTxM8AHwBK-cYNRrXNkjI6X-c-sFxdYSrEup7oAjYoNjAhtzzY9y464Zitdg6D7CQ4BW3t35X1faB8LS1jOwaQXcsT_z0jUhZBijwAPN_D9_KsvMHWOf89opBt3NS8AOhViznLIy6E8_fYcUaQyZRr4DG6ngnIsJy31DRv1J33O7I64nAiC-N_yAO-A2",
+                "https://demo.docusign.net/clickapi/v1/redeem?agreementToken=" + agreementToken,
+
             onAgreed: function (agreementData) {
                 console.log("User agreed on Terms & Conditions!");
-                window.location.href = 'https://fss-agree?agreementId='+ agreementData.agreementId;
+                window.location.href = 'https://fss-agree?agreementId='+ agreementData.agreementId
+                                                            +'&accountId='+ agreementData.accountId
+                                                            +'&clickwrapId='+ agreementData.clickwrapId
+                                                            +'&status=' + agreementData.status;
             },
             onAgreeing: function (agreementData) {
                 console.log("User Click the agree button ..... Proceeding to update the system services!");
@@ -26,7 +36,10 @@
                 //console.log(JSON.stringify(agreementData));
                 console.log("User declined Terms & Conditions!");
                 console.log(Object.values(agreementData));
-                window.location.href = 'https://fss-decline?agreementId='+ agreementData.agreementId;
+                window.location.href = 'https://fss-decline?agreementId='+ agreementData.agreementId
+                                                            +'&accountId='+ agreementData.accountId
+                                                            +'&clickwrapId='+ agreementData.clickwrapId
+                                                            +'&status=' + agreementData.status;
             },
             onError: function (error) {
                 console.log(error);
