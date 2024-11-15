@@ -12,12 +12,13 @@
     const urlParams = new URLSearchParams(window.location.search);
 
     // Get specific query parameters
+    const domain = urlParams.get('domain');
     const agreementToken = urlParams.get('agreementToken');
 
     docuSignClick.Clickwrap.render(
         {
             agreementUrl:
-                "https://demo.docusign.net/clickapi/v1/redeem?agreementToken=" + agreementToken,
+                "https://'+ domain +'/clickapi/v1/redeem?agreementToken=" + agreementToken,
 
             onAgreed: function (agreementData) {
                 console.log("User agreed on Terms & Conditions!");
