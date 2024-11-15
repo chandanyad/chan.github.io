@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Terms and Condition Agreement</title>
+    <title>Terms and Conditions agreement</title>
 </head>
 <body>
 <div id="ds-terms-of-service"></div>
@@ -12,13 +12,11 @@
     const urlParams = new URLSearchParams(window.location.search);
 
     // Get specific query parameters
-    const docuSignDomain = urlParams.get('domain');
-    const docuSignAgreementToken = urlParams.get('agreementToken');
+    const docuSignAgreementUrl = urlParams.get('agreementUrl');
 
     docuSignClick.Clickwrap.render(
        {
-            agreementUrl:
-                "https://"+ docuSignDomain +"/clickapi/v1/redeem?agreementToken=" + docuSignAgreementToken,
+            agreementUrl: docuSignAgreementUrl,
 
             onAgreed: function (agreementData) {
                 console.log("User agreed on Terms & Conditions!");
