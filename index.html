@@ -1,70 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Terms and Conditions agreement</title>
-</head>
-<body>
-<div id="ds-terms-of-service"></div>
-<script src="https://demo.docusign.net/clickapi/sdk/latest/docusign-click.js"></script>
-<script>
-    // Parse the current URL
-    const urlParams = new URLSearchParams(window.location.search);
+  </head>
 
-    // Get specific query parameters
-    const docuSignAgreementUrl = urlParams.get('agreementUrl');
+  <body>
+    <div id="ds-terms-of-service"></div>
+    <script src="https://demo.docusign.net/clickapi/sdk/latest/docusign-click.js"></script>
+    <script>
+      // Parse the current URL
+      const urlParams = new URLSearchParams(window.location.search);
+      // Get agreementToken query parameters
+      const docuSignAgreementUrl = urlParams.get('agreementUrl');
+        // Get Agree redirect query parameters
+      const onAgreeRedirectUrl = urlParams.get('agreeRedirect');
+      const onDeclineRedirectUrl = urlParams.get('declineRedirect');
 
-    docuSignClick.Clickwrap.render(
-       {
-            agreementUrl: docuSignAgreementUrl,
-
-            onAgreed: function (agreementData) {
-                console.log("User agreed on Terms & Conditions!");
-                window.location.href = 'https://fss-agree?agreementId='+ agreementData.agreementId
+      docuSignClick.Clickwrap.render(
+         {
+              agreementUrl: docuSignAgreementUrl,
+              onAgreed: function (agreementData) {
+                  console.log("User agreed on Terms & Conditions!");
+                  window.location.href = onAgreeRedirectUrl +'?agreementId='+ agreementData.agreementId
                                                             +'&accountId='+ agreementData.accountId
                                                             +'&clickwrapId='+ agreementData.clickwrapId
                                                             +'&status=' + agreementData.status;
-            },
-            onAgreeing: function (agreementData) {
-                console.log("User Click the agree button ..... Proceeding to update the system services!");
-            },
-            onDeclining: function (agreementData) {
-                console.log("User Click the decline button ..... Updating status now");
-            },
-            onDeclined: function (agreementData) {
-                //console.log(JSON.stringify(agreementData));
-                console.log("User declined Terms & Conditions!");
-                console.log(Object.values(agreementData));
-                window.location.href = 'https://fss-decline?agreementId='+ agreementData.agreementId
-                                                            +'&accountId='+ agreementData.accountId
-                                                            +'&clickwrapId='+ agreementData.clickwrapId
-                                                            +'&status=' + agreementData.status;
-            },
-            onError: function (error) {
-                console.log(error);
-            },
-            style: {
-                container: {
-                    backgroundColor: "#ffffff",
-                    borderWidth: "3",
-                },
-                agreementStatement: {
-                    fontFamily: "Helvetica, Arial, sans-serif",
-                    fontWeight: "normal",
-                },
-                documentLink: {
-                    color: "#333",
-                    fontWeight: "normal",
-                },
-                agreeButton: {
-                    fontWeight: "bold",
-                    fontFamily: "Helvetica, Arial, sans-serif",
-                    backgroundColor: "#d2051e",
-                },
-            },
-        },
-        "#ds-terms-of-service"
-    );
-</script>
-</body>
+              },
+              onAgreeing: function (agreementData) {
+                  console.log("User Click the agree button ..... Proceeding to update the system services!");
+              },
+              onDeclining: function (agreementData) {
+                  console.log("User Click the decline button ..... Updating status now");
+              },
+              onDeclined: function (agreementData) {
+                  //console.log(JSON.stringify(agreementData));
+                  console.log("User declined Terms & Conditions!");
+                  console.log(Object.values(agreementData));
+                  window.location.href = onDeclineRedirectUrl +'?agreementId='+ agreementData.agreementId
+                                                              +'&accountId='+ agreementData.accountId
+                                                              +'&clickwrapId='+ agreementData.clickwrapId
+                                                              +'&status=' + agreementData.status;
+              },
+              onError: function (error) {
+                  console.log(error);
+              },
+              style: {
+                  container: {
+                      backgroundColor: "#ffffff",
+                      borderWidth: "2",
+                  },
+                  agreementStatement: {
+                      fontFamily: "Helvetica, Arial, sans-serif",
+                      fontWeight: "normal",
+                  },
+                  documentLink: {
+                      color: "#333",
+                      fontWeight: "normal",
+                  },
+                  agreeButton: {
+                      fontWeight: "bold",
+                      fontFamily: "Helvetica, Arial, sans-serif",
+                      backgroundColor: "#d2051e",
+                  },
+              },
+          },
+          "#ds-terms-of-service"
+      );
+    </script>
+  </body>
 </html>
