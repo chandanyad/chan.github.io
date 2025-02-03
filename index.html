@@ -1,72 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Terms and Conditions agreement</title>
-  </head>
-
-  <body>
-    <div id="ds-terms-of-service"></div>
-    <script src="https://demo.docusign.net/clickapi/sdk/latest/docusign-click.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
     <script>
-      // Parse the current URL
-      const urlParams = new URLSearchParams(window.location.search);
-      // Get agreementToken query parameters
-      const docuSignAgreementUrl = urlParams.get('agreementUrl');
-        // Get Agree redirect query parameters
-      const onAgreeRedirectUrl = urlParams.get('agreeRedirect');
-      const onDeclineRedirectUrl = urlParams.get('declineRedirect');
+        // Device Detection
+        window.onload = function() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-      docuSignClick.Clickwrap.render(
-         {
-              agreementUrl: docuSignAgreementUrl,
-              onAgreed: function (agreementData) {
-                  console.log("User agreed on Terms & Conditions!");
-                  window.location.href = onAgreeRedirectUrl +'?agreementId='+ agreementData.agreementId
-                                                            +'&accountId='+ agreementData.accountId
-                                                            +'&clickwrapId='+ agreementData.clickwrapId
-                                                            +'&status=' + agreementData.status;
-              },
-              onAgreeing: function (agreementData) {
-                  console.log("User Click the agree button ..... Proceeding to update the system services!");
-              },
-              onDeclining: function (agreementData) {
-                  console.log("User Click the decline button ..... Updating status now");
-              },
-              onDeclined: function (agreementData) {
-                  //console.log(JSON.stringify(agreementData));
-                  console.log("User declined Terms & Conditions!");
-                  console.log(Object.values(agreementData));
-                  window.location.href = onDeclineRedirectUrl +'?agreementId='+ agreementData.agreementId
-                                                              +'&accountId='+ agreementData.accountId
-                                                              +'&clickwrapId='+ agreementData.clickwrapId
-                                                              +'&status=' + agreementData.status;
-              },
-              onError: function (error) {
-                  console.log(error);
-              },
-              style: {
-                  container: {
-                      backgroundColor: "#ffffff",
-                      borderWidth: "2",
-                  },
-                  agreementStatement: {
-                      fontFamily: "Helvetica, Arial, sans-serif",
-                      fontWeight: "normal",
-                  },
-                  documentLink: {
-                      color: "#333",
-                      fontWeight: "normal",
-                  },
-                  agreeButton: {
-                      fontWeight: "bold",
-                      fontFamily: "Helvetica, Arial, sans-serif",
-                      backgroundColor: "#d2051e",
-                  },
-              },
-          },
-          "#ds-terms-of-service"
-      );
+            // Links to Google Play and App Store
+            var androidLink = "https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc";
+            var iosLink = "https://apps.apple.com/us/app/hilti-volume-calculator/id722816215";
+
+            // Redirect Based on Device
+            if (/android/i.test(userAgent)) {
+                window.location.href = androidLink;
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = iosLink;
+            } else {
+                // For desktop or unknown devices
+                document.getElementById("links").style.display = "block";
+            }
+        };
     </script>
-  </body>
+</head>
+<body>
+    <h2>Redirecting you to the app...</h2>
+    <div id="links" style="display:none;">
+        <p>Can't detect your device? Choose manually:</p>
+        <a href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">Google Play Store</a><br>
+        <a href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">Apple App Store</a>
+    </div>
+</body>
 </html>
