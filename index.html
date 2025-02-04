@@ -16,7 +16,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background-color: var(--hilti-white);
+            background-color: var(--hilti-red);
             color: var(--hilti-white);
         }
 
@@ -37,7 +37,8 @@
         }
 
         a {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             margin: 10px;
             text-decoration: none;
             background-color: var(--hilti-red);
@@ -54,6 +55,12 @@
         .hilti-logo {
             width: 200px;
             margin-bottom: 20px;
+        }
+
+        .store-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
         }
     </style>
     <script>
@@ -96,13 +103,17 @@
 </head>
 <body>
     <div class="container">
-        <img class="hilti-logo" src="https://www.hilti.group/content/hilti/W1/US/en/company/media-relations/media-kit/jcr:content/mainParsys/download/file.res/Hilti-Logo.png" alt="Hilti Logo">
+        <img class="hilti-logo" src="/mnt/data/VC.png" alt="Hilti Volume Calculator Logo">
         <h2>Redirecting You to the Hilti Volume Calculator App...</h2>
         <p>Please wait while we detect your device.</p>
         <div id="manual-links" style="display:none;">
             <p>Can't detect your device? Download manually:</p>
-            <a href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">Google Play Store</a>
-            <a href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">Apple App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">
+                <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Android Icon">Google Play Store
+            </a>
+            <a href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">
+                <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Icon">Apple App Store
+            </a>
         </div>
     </div>
 </body>
