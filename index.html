@@ -3,34 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Redirecting to Your App...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        img {
+            width: 150px;
+            margin: 10px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            text-decoration: none;
+        }
+    </style>
     <script>
-        // Device Detection
-        window.onload = function() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        (function() {
+            const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc";
+            const IOS_URL = "https://apps.apple.com/us/app/hilti-volume-calculator/id722816215";
+            const FALLBACK_URL = "https://www.hilti.com/content/hilti/W1/US/en/business/business/engineering/anchors/volume-calculator.html"; // Optional fallback page
 
-            // Links to Google Play and App Store
-            var androidLink = "https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc";
-            var iosLink = "https://apps.apple.com/us/app/hilti-volume-calculator/id722816215";
-
-            // Redirect Based on Device
-            if (/android/i.test(userAgent)) {
-                window.location.href = androidLink;
-            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = iosLink;
-            } else {
-                // For desktop or unknown devices
-                document.getElementById("links").style.display = "block";
+            function detectDeviceAndRedirect() {
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                try {
+                    if (/android/i.test(userAgent)) {
+                        trackEvent("Redirect", "Android");
+                        window.location.href = ANDROID_URL;
+                    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                        trackEvent("Redirect", "iOS");
+                        window.location.href = IOS_URL;
+                    } else {
+                        document.getElementById("manual-links").style.display = "block";
+                        trackEvent("Fallback", "Desktop or Unknown Device");
+                    }
+                } catch (error) {
+                    console.error("Redirection Error:", error);
+                    window.location.href = FALLBACK_URL;
+                }
             }
-        };
+
+            function trackEvent(eventCategory, eventAction) {
+                if (window.gtag) { // Google Analytics integration
+                    gtag('event', eventCategory, {
+                        'event_category': eventCategory,
+                        'event_action': eventAction
+                    });
+                }
+            }
+
+            window.onload = detectDeviceAndRedirect;
+        })();
     </script>
 </head>
 <body>
-    <h2>Redirecting you to the app...</h2>
-    <div id="links" style="display:none;">
-        <p>Can't detect your device? Choose manually:</p>
-        <a href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">Google Play Store</a><br>
-        <a href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">Apple App Store</a>
+    <div class="container">
+        <h2>Redirecting You to the App...</h2>
+        <p>Please wait while we detect your device.</p>
+        <div id="manual-links" style="display:none;">
+            <p>Can't detect your device? Download manually:</p>
+            <a href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play Store">
+            </a>
+            <a href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Apple App Store">
+            </a>
+        </div>
     </div>
 </body>
 </html>
