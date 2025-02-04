@@ -3,32 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hilti Volume Calculator - Redirecting...</title>
+    <title>Volume Calculator - Redirecting...</title>
     <style>
-        :root {
-            --hilti-red: #e30613;
-            --hilti-grey: #f2f2f2;
-            --hilti-black: #000000;
-            --hilti-white: #ffffff;
-        }
-
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background-color: var(--hilti-white);
-            color: var(--hilti-white);
+            background-color: #ffffff;
+            color: #000000;
         }
 
         .container {
-            background: var(--hilti-white);
-            color: var(--hilti-black);
+            background: #f9f9f9;
+            color: #000000;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             max-width: 400px;
             margin: auto;
-            border: 3px solid var(--hilti-white);
+            border: 1px solid #cccccc;
         }
 
         img {
@@ -41,18 +34,18 @@
             align-items: center;
             margin: 10px;
             text-decoration: none;
-            background-color: var(--hilti-white);
-            color: var(--hilti-white);
+            background-color: #007bff;
+            color: #ffffff;
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
 
         a:hover {
-            background-color: var(--hilti-black);
+            background-color: #0056b3;
         }
 
-        .hilti-logo {
+        .logo {
             width: 200px;
             margin-bottom: 20px;
         }
@@ -61,6 +54,11 @@
             width: 20px;
             height: 20px;
             margin-right: 8px;
+        }
+
+        .top-logo {
+            width: 100px;
+            margin-bottom: 20px;
         }
     </style>
     <script>
@@ -73,27 +71,15 @@
                 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
                 try {
                     if (/android/i.test(userAgent)) {
-                        trackEvent("Redirect", "Android");
                         window.location.href = ANDROID_URL;
                     } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                        trackEvent("Redirect", "iOS");
                         window.location.href = IOS_URL;
                     } else {
                         document.getElementById("manual-links").style.display = "block";
-                        trackEvent("Fallback", "Desktop or Unknown Device");
                     }
                 } catch (error) {
                     console.error("Redirection Error:", error);
                     window.location.href = FALLBACK_URL;
-                }
-            }
-
-            function trackEvent(eventCategory, eventAction) {
-                if (window.gtag) {
-                    gtag('event', eventCategory, {
-                        'event_category': eventCategory,
-                        'event_action': eventAction
-                    });
                 }
             }
 
@@ -103,8 +89,9 @@
 </head>
 <body>
     <div class="container">
-        <img class="hilti-logo" src="/mnt/data/VC.png" alt="Hilti Volume Calculator Logo">
-        <h2>Redirecting You to the Hilti Volume Calculator App...</h2>
+        <img class="top-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Store Logo">
+        <img class="logo" src="/mnt/data/VC.png" alt="Volume Calculator Logo">
+        <h2>Redirecting You to the Volume Calculator App...</h2>
         <p>Please wait while we detect your device.</p>
         <div id="manual-links" style="display:none;">
             <p>Can't detect your device? Download manually:</p>
