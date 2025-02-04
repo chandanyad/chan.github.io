@@ -37,15 +37,23 @@
             height: 50px;
             margin: 10px;
             text-decoration: none;
-            background-color: #000000;
-            color: #ffffff;
             padding: 10px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
 
         a:hover {
-            background-color: #333333;
+            background-color: #e0e0e0;
+        }
+
+        .android-button {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .apple-button {
+            background-color: #d3d3d3;
+            color: #000000;
         }
 
         .logo {
@@ -91,18 +99,17 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <img class="top-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Store Logo">
-        <img class="logo" src="/mnt/data/VC.png" alt="Volume Calculator Logo">
+    <div class="container"> 
+        <img class="logo" src="https://play-lh.googleusercontent.com/pPLPjsANrN35JTlow3cZtFqRHFZDWNKIxNkAvPeUavwudom-3CbqG59g7_WvarlnGJw=w240-h480-rw" alt="Volume Calculator Logo">
         <h2>Redirecting You to the Volume Calculator App...</h2>
         <p>Please wait while we detect your device.</p>
         <div id="manual-links" style="display:none;">
             <p>Can't detect your device? Download manually:</p>
-            <a href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">
+            <a class="android-button" href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">
                 <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Android Icon">Google Play Store
             </a>
-            <a href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">
-                <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_gray_logo.svg" alt="Apple Icon">Apple App Store
+            <a class="apple-button" href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">
+                <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Icon">Apple App Store
             </a>
         </div>
     </div>
