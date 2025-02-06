@@ -1,117 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volume Calculator - Redirecting...</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        .container {
-            background: #ffffff;
-            color: #000000;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            margin: auto;
-            border: 1px solid #cccccc;
-        }
-
-        img {
-            width: 150px;
-            margin: 10px;
-        }
-
-        a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 180px;
-            height: 50px;
-            margin: 10px;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        a:hover {
-            background-color: #e0e0e0;
-        }
-
-        .android-button {
-            background-color: #d3d3d3;
-            color: #000000;
-        }
-
-        .apple-button {
-            background-color: #d3d3d3;
-            color: #000000;
-        }
-
-        .logo {
-            width: 200px;
-            margin-bottom: 20px;
-        }
-
-        .store-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-        }
-
-        .top-logo {
-            width: 100px;
-            margin-bottom: 20px;
-        }
-    </style>
-    <script>
-        (function() {
-            const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc";
-            const IOS_URL = "https://apps.apple.com/us/app/hilti-volume-calculator/id722816215";
-            const FALLBACK_URL = "https://www.hilti.com/content/hilti/W1/US/en/business/business/engineering/anchors/volume-calculator.html";
-
-            function detectDeviceAndRedirect() {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                try {
-                    if (/android/i.test(userAgent)) {
-                        window.location.href = ANDROID_URL;
-                    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                        window.location.href = IOS_URL;
-                    } else {
-                        document.getElementById("manual-links").style.display = "block";
-                    }
-                } catch (error) {
-                    console.error("Redirection Error:", error);
-                    window.location.href = FALLBACK_URL;
-                }
-            }
-
-            window.onload = detectDeviceAndRedirect;
-        })();
-    </script>
-</head>
-<body>
-    <div class="container"> 
-        <img class="logo" src="https://play-lh.googleusercontent.com/pPLPjsANrN35JTlow3cZtFqRHFZDWNKIxNkAvPeUavwudom-3CbqG59g7_WvarlnGJw=w240-h480-rw" alt="Volume Calculator Logo">
-        <h2>Redirecting You to the Volume Calculator App...</h2>
-        <p>Please wait while we detect your device.</p>
-        <div id="manual-links" style="display:none;">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Volume Calculator - Redirecting...</title>
+      <style>
+         body {
+         font-family: Arial, sans-serif;
+         text-align: center;
+         padding: 50px;
+         background-color: #ffffff;
+         color: #000000;
+         }
+         .container {
+         background: #ffffff;
+         color: #000000;
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+         max-width: 400px;
+         margin: auto;
+         border: 1px solid #cccccc;
+         }
+         img {
+         width: 150px;
+         margin: 10px;
+         }
+         a {
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         width: 180px;
+         height: 50px;
+         margin: 10px;
+         text-decoration: none;
+         padding: 10px;
+         border-radius: 5px;
+         transition: background-color 0.3s ease;
+         }
+         a:hover {
+         background-color: #e0e0e0;
+         }
+         .android-button {
+         background-color: #d3d3d3;
+         color: #000000;
+         }
+         .apple-button {
+         background-color: #d3d3d3;
+         color: #000000;
+         }
+         .logo {
+         width: 200px;
+         margin-bottom: 20px;
+         }
+         .store-icon {
+         width: 20px;
+         height: 20px;
+         margin-right: 8px;
+         }
+         .top-logo {
+         width: 100px;
+         margin-bottom: 20px;
+         }
+      </style>
+      <script>
+         (function() {
+             const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc";
+             const IOS_URL = "https://apps.apple.com/us/app/hilti-volume-calculator/id722816215";
+             const FALLBACK_URL = "https://www.hilti.com/content/hilti/W1/US/en/business/business/engineering/anchors/volume-calculator.html";
+             function closeBrowser() {
+                   setTimeout(function() {
+                     window.close();
+                   }, 1000); // Close browser after 1 second
+             }
+                 
+             function detectDeviceAndRedirect() {
+                 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                 try {
+                     if (/android/i.test(userAgent)) {
+                         window.location.href = ANDROID_URL;
+                         closeBrowser();
+                     } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                         window.location.href = IOS_URL;
+                          closeBrowser();
+                     } else {
+                         document.getElementById("manual-links").style.display = "block";
+                     }
+                 } catch (error) {
+                     console.error("Redirection Error:", error);
+                     window.location.href = FALLBACK_URL;
+                 }
+             }
+         
+             window.onload = detectDeviceAndRedirect;
+         })();
+      </script>
+   </head>
+   <body>
+      <div class="container">
+         <img class="logo" src="https://play-lh.googleusercontent.com/pPLPjsANrN35JTlow3cZtFqRHFZDWNKIxNkAvPeUavwudom-3CbqG59g7_WvarlnGJw=w240-h480-rw" alt="Volume Calculator Logo">
+         <h2>Redirecting You to the Volume Calculator App...</h2>
+         <p>Please wait while we detect your device.</p>
+         <div id="manual-links" style="display:none;">
             <p>Can't detect your device? Download manually:</p>
             <a class="android-button" href="https://play.google.com/store/apps/details?id=com.hilti.mobile.volcalc">
-                <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Android Icon">Google Play Store
+            <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Android Icon">Google Play Store
             </a>
             <a class="apple-button" href="https://apps.apple.com/us/app/hilti-volume-calculator/id722816215">
-                <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Icon">Apple App Store
+            <img class="store-icon" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Icon">Apple App Store
             </a>
-        </div>
-    </div>
-</body>
+         </div>
+      </div>
+   </body>
 </html>
